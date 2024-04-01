@@ -39,7 +39,7 @@
                             </ul>
                         </div>
                     </div>
-                    <img src="./assets/sheldon.png" alt="Sheldon Cooper" />
+                    <img src="./assets/sheldon.jpg" alt="Sheldon Cooper" />
                 </div>
             </div>
 

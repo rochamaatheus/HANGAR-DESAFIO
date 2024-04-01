@@ -15,10 +15,14 @@
       /** @var mysqli $db_connection */
       include('./conexao.php');
 
+      if (!($db_connection instanceof mysqli)) {
+        die("<p>Erro de conexão: Não foi possível conectar ao banco de dados</p>");
+      }
+
       $stmt = $db_connection->prepare("SELECT DATE(order_date) as date, AVG(order_total) as average FROM orders GROUP BY DATE(order_date)");
 
       if ($stmt === false) {
-        die('Erro ao preparar a consulta: ' . htmlspecialchars($db_connection->error));
+        die("<p>Erro ao preparar a consulta: " . htmlspecialchars($db_connection->error) . "</p>");
       }
 
       $stmt->execute();
@@ -49,7 +53,11 @@
                 <td><?= $row['date']; ?></td>
                 <td><?= $row['average']; ?></td>
             </tr>
-            <?php endwhile; ?>
+            <?php
+                endwhile;
+                $stmt->close();
+                $db_connection->close();    
+            ?>
         </tbody>
     </table>
 </body>

@@ -32,3 +32,44 @@ img {
     display: block;
   }
 }
+
+/* HEADER */
+
+header {
+  background-color: #234;
+}
+
+header a {
+  color: #fff;
+}
+
+a.router-link-active {
+  color: #4b8;
+}
+
+nav {
+  max-width: 50rem;
+  margin: 0 auto;
+  display: flex;
+  align-content: space-between;
+  align-items: center;
+  padding: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.logo {
+  flex: 1;
+}
+
+.logo img {
+  max-width: 220px;
+}
+
+ul li {
+  display: inline-block;
+}
+
+li a {
+  padding: 0 0.75rem;
+  margin-right: 0.75rem;
+}

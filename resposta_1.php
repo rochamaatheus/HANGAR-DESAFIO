@@ -19,15 +19,16 @@
         die("<p>Erro de conexão: Não foi possível conectar ao banco de dados</p>");
       }
 
-      $stmt = $db_connection->prepare("SELECT DATE(order_date) as date, AVG(order_total) as average FROM orders GROUP BY DATE(order_date)");
+      try {
+        $stmt = $db_connection->prepare("SELECT DATE(order_date) as date, AVG(order_total) as average FROM orders GROUP BY DATE(order_date)");
 
-      if ($stmt === false) {
-        die("<p>Erro ao preparar a consulta: " . htmlspecialchars($db_connection->error) . "</p>");
-      }
-
-      $stmt->execute();
-
-      $result = $stmt->get_result();
+        if ($stmt === false) {
+          die("<p>Ocorreu um erro. Por favor, tente novamente mais tarde.</p>");
+        }
+  
+        $stmt->execute();
+  
+        $result = $stmt->get_result();
     ?>
 
     <table>
@@ -50,14 +51,17 @@
                 }
             ?>
             <tr class="<?= $color; ?>">
-                <td><?= $row['date']; ?></td>
-                <td><?= $row['average']; ?></td>
+                <td><?= htmlspecialchars($row['date']); ?></td>
+                <td><?= htmlspecialchars($row['average']); ?></td>
             </tr>
-            <?php
-                endwhile;
-                $stmt->close();
-                $db_connection->close();    
-            ?>
+            <?php endwhile; } catch (Exception $e) {
+                echo "<p>Ocorreu um erro. Por favor, tente novamente mais tarde.</p>";
+            } finally {
+                if ($stmt !== null) {
+                    $stmt->close();
+                }
+                $db_connection->close();
+            } ?>
         </tbody>
     </table>
 </body>

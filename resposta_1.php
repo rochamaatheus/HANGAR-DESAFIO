@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Média de Pedidos</title>
+    <link rel="stylesheet" href="./css/style.css">
     <style>
         .red { color: red; }
         .green { color: green; }

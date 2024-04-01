@@ -21,6 +21,7 @@ img {
   max-width: 100%;
   height: auto;
   display: block;
+  border-radius: 4px;
 }
 .conteudo {
   display: grid;
@@ -78,7 +79,7 @@ nav {
 }
 
 .logo img {
-  max-width: 220px;
+  max-width: 250px;
 }
 
 ul li {

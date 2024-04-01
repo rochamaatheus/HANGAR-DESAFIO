@@ -20,16 +20,21 @@
             <option value="" disabled selected>Selecione um País</option>
 
             <?php
-              $stmt = $db_connection->prepare("SELECT DISTINCT user_country FROM user ORDER BY user_country");
-              if ($stmt === false) {
-                die("<p>Erro ao preparar a consulta: " . htmlspecialchars($db_connection->error) . "</p>");
+              try {
+                $stmt = $db_connection->prepare("SELECT DISTINCT user_country FROM user ORDER BY user_country");
+                if ($stmt === false) {
+                  die("<p>Ocorreu um erro. Por favor, tente novamente mais tarde.</p>");
+                }
+                $stmt->execute();
+                $countries = $stmt->get_result();
+                while ($row = $countries->fetch_assoc()) {
+                    echo "<option value=\"" . htmlspecialchars($row['user_country']) . "\">" . htmlspecialchars($row['user_country']) . "</option>";
+                }
+              } catch (Exception $e) {
+                echo "<p>Ocorreu um erro. Por favor, tente novamente mais tarde.</p>";
+              } finally {
+                $stmt->close();
               }
-              $stmt->execute();
-              $countries = $stmt->get_result();
-              while ($row = $countries->fetch_assoc()) {
-                echo "<option value=\"{$row['user_country']}\">{$row['user_country']}</option>";
-              }
-              $stmt->close();
             ?>
 
         </select>
@@ -47,7 +52,7 @@
             $stmt->bind_param('s', $country);
     
             if ($stmt === false) {
-                throw new Exception("Erro ao preparar a consulta: " . $db_connection->error);
+                die("<p>Erro ao preparar a consulta</p>");
             }
     
             $stmt->execute();
@@ -71,11 +76,7 @@
                 <td><?= $row['total_sales']; ?></td>
             </tr>
 
-            <?php 
-              endwhile; 
-              $stmt->close();
-              $db_connection->close();    
-            ?>
+            <?php endwhile; ?>
 
         </tbody>
     </table>
@@ -83,6 +84,9 @@
     <?php 
         } catch (Exception $e) { 
             echo "<p>Ocorreu um erro. Por favor, tente novamente mais tarde.</p>"; 
+        } finally {
+            $stmt->close();
+            $db_connection->close(); 
         }
       }
     ?>

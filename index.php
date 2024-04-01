@@ -9,22 +9,8 @@
 </head>
 
 <body>
-    <header>
-        <nav>
-            <div class="logo">
-                <a href="index.php"><img src="./assets/logo.png" alt="Big Bang Theory Logo"></a>
-            </div>
-            <ul>
-                <li>Home</li>
-                <li>Teste</li>
-                <li>Teste</li>
-                <li>Teste</li>
-                <li>Teste</li>
-                <li>Teste</li>
-                <li>Teste</li>
-            </ul>
-        </nav>
-    </header>
+    <?php include('./include/header.php') ?>
+
     <main>
         <div class="container">
             <div class="conteudo">
@@ -61,10 +47,8 @@
             </div>
         </div>
     </main>
-    <footer>
-        <p>Desenvolvido por &copy;<a href="https://github.com/rochamaatheus" target="_blank" rel="external">Matheus
-                Rocha</a>.</p>
-    </footer>
+
+    <?php include('./include/footer.php') ?>
 </body>
 
 </html>

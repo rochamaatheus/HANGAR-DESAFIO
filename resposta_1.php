@@ -12,6 +12,7 @@
 </head>
 <body>
     <?php
+      ini_set('display_errors', '0');
       /** @var mysqli $db_connection */
       include('./conexao.php');
 
@@ -55,6 +56,8 @@
                 <td><?= htmlspecialchars($row['average']); ?></td>
             </tr>
             <?php endwhile; } catch (Exception $e) {
+                $logMessage = date('Y-m-d H:i:s') . ' - Erro: ' . $e->getMessage() . "\n";
+                file_put_contents('error_log_resposta_1.txt', $logMessage, FILE_APPEND);
                 echo "<p>Ocorreu um erro. Por favor, tente novamente mais tarde.</p>";
             } finally {
                 if ($stmt !== null) {

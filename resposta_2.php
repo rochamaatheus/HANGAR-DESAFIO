@@ -18,6 +18,7 @@
         <thead>
             <tr>
                 <th>ID do Pedido</th>
+                <th>ID do Pedido do Usuário</th>
                 <th>Data do Pedido</th>
                 <th>Total do Pedido</th>
             </tr>
@@ -45,6 +46,7 @@
             ?>
             <tr>
                 <td><?= $row['order_id']; ?></td>
+                <td><?= $row['order_user_id']; ?></td>
                 <td><?= $row['order_date']; ?></td>
                 <td><?= $row['order_total']; ?></td>
             </tr>

@@ -20,7 +20,7 @@
                         de quatro amigos intelectuais que são apaixonados por ciência e cultura geek, e sua vizinha
                         Penny, que tem mais habilidades sociais. A interação entre esses personagens cria muitas das
                         situações cômicas da série.</p>
-                    <a href="resposta_1.php"><button class="btn-tabela">Comece a ver as tabelas</button></a>
+                    <a href="./paginas/resposta_1.php"><button class="btn-tabela">Comece a ver as tabelas</button></a>
                     <div>
                         <h2>Avaliações</h2>
                         <ul>

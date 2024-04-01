@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Média de Pedidos</title>
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/tabela.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/tabela.css">
     <style>
         .red { color: red; }
         .green { color: green; }
@@ -14,11 +14,11 @@
 </head>
 <body>
     <?php
-      include("./include/header.php");
+      include("../include/header-paginas.php");
 
       ini_set('display_errors', '0');
       /** @var mysqli $db_connection */
-      include('./conexao.php');
+      include('../conexao.php');
 
       if (!($db_connection instanceof mysqli)) {
         die("<p>Erro de conexão: Não foi possível conectar ao banco de dados</p>");
@@ -74,6 +74,6 @@
         </table>
     </main>
 
-    <?php include("./include/footer.php"); ?>
+    <?php include("../include/footer.php"); ?>
 </body>
 </html>

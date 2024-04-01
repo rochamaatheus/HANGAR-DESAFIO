@@ -72,8 +72,8 @@
             <?php while ($row = mysqli_fetch_assoc($result)): ?>
 
             <tr>
-                <td><?= $row['user_country']; ?></td>
-                <td><?= $row['total_sales']; ?></td>
+                <td><?= htmlspecialchars($row['user_country']); ?></td>
+                <td><?= htmlspecialchars($row['total_sales']); ?></td>
             </tr>
 
             <?php endwhile; ?>

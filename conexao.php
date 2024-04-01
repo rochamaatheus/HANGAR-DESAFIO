@@ -11,7 +11,6 @@ try {
   if (!$db_connection) {
     throw new Exception('Could not connect to MySQL server.');
   }
-  echo 'Connected to MySQL server.';
 } catch (Exception $e) {
   echo $e->getMessage();
 }

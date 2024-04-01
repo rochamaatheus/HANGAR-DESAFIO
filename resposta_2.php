@@ -25,6 +25,7 @@
         </thead>
         <tbody>
             <?php
+              ini_set('display_errors', '0');
               /** @var mysqli $db_connection */
               include('./conexao.php');
 
@@ -32,28 +33,36 @@
                 die("<p>Erro de conexão: Não foi possível conectar ao banco de dados</p>");
               }
 
-              $stmt = $db_connection->prepare("SELECT * FROM orders");
+              try {
+                $stmt = $db_connection->prepare("SELECT * FROM orders");
 
-              if ($stmt === false) {
-                die("<p>Erro ao preparar a consulta: " . htmlspecialchars($db_connection->error) . "</p>");
-              }
-
-              $stmt->execute();
-
-              $result = $stmt->get_result();
-
-              while ($row = mysqli_fetch_assoc($result)): 
+                if ($stmt === false) {
+                  die("<p>Ocorreu um erro. Por favor, tente novamente mais tarde.</p>");
+                }
+  
+                $stmt->execute();
+  
+                $result = $stmt->get_result();
+  
+                while ($row = mysqli_fetch_assoc($result)): 
             ?>
             <tr>
-                <td><?= $row['order_id']; ?></td>
-                <td><?= $row['order_user_id']; ?></td>
-                <td><?= $row['order_date']; ?></td>
-                <td><?= $row['order_total']; ?></td>
+                <td><?= htmlspecialchars($row['order_id']); ?></td>
+                <td><?= htmlspecialchars($row['order_user_id']); ?></td>
+                <td><?= htmlspecialchars($row['order_date']); ?></td>
+                <td><?= htmlspecialchars($row['order_total']); ?></td>
             </tr>
             <?php 
-              endwhile; 
-              $stmt->close();
-              $db_connection->close();    
+              endwhile; } catch (Exception $e) {
+                $logMessage = date('Y-m-d H:i:s') . ' - Erro: ' . $e->getMessage() . "\n";
+                file_put_contents('error_log_resposta_2.txt', $logMessage, FILE_APPEND);
+                echo "<p>Ocorreu um erro. Por favor, tente novamente mais tarde.</p>";
+              } finally {
+                  if ($stmt !== null) {
+                      $stmt->close();
+                  }
+                  $db_connection->close();
+              }
             ?>
         </tbody>
     </table>

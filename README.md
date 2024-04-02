@@ -36,8 +36,8 @@ E arquivos principais como:
 - index.php
 - conexao.php
 
-Usei como base alguns projetos que eu já havia criado com PHP e usufrui da sua boa documentação.
-Para segurança do site usei de alguma técnicas de cibersegurança das quais estudo.
+Usei como base alguns projetos que já havia criado com PHP e usufrui da sua boa documentação.
+Para segurança do site usei algumas técnicas de cibersegurança das quais estudo.
 
 ## Contato
 

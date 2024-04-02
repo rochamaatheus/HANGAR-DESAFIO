@@ -25,21 +25,6 @@
         border-radius: 4px;
         border: 1px solid #ddd;
     }
-
-    form button {
-        padding: .5rem 1rem;
-        font-size: 1rem;
-        color: #fff;
-        background-color: #234;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background-color .3s ease;
-    }
-
-    form button:hover {
-        background-color: #4b8;
-    }
     </style>
 </head>
 

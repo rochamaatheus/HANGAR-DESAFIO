@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Média de Pedidos</title>
+    <title>Atualização de País</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/tabela.css">
 </head>
@@ -27,11 +27,15 @@
         }
 
         try {
-          $stmt = $db_connection->prepare("SELECT user.user_name AS Name, user.user_city AS City, user.user_country AS Country, orders.order_date AS Date, orders.order_total AS Total FROM user JOIN orders ON user.user_id = orders.order_user_id WHERE user.user_id IN (1, 3, 5) ORDER BY user.user_name");
+          $stmt = $db_connection->prepare("UPDATE user SET user_country = 'Canada' WHERE user_id = 4");
 
           if ($stmt === false) {
             die("<p style=\"text-align: center;\">Ocorreu um erro. Por favor, tente novamente mais tarde.</p>");
           }
+
+          $stmt->execute();
+
+          $stmt = $db_connection->prepare("SELECT user_id, user_name, user_city, user_country FROM User WHERE user_id = 4");
 
           $stmt->execute();
 
@@ -42,25 +46,23 @@
         <table>
             <thead>
                 <tr>
+                    <th>ID</th>
                     <th>Name</th>
                     <th>City</th>
                     <th>Country</th>
-                    <th>Date</th>
-                    <th>Total</th>
                 </tr>
             </thead>
             <tbody>
                 <?php while ($row = mysqli_fetch_assoc($result)): ?>
                 <tr>
-                    <td><?= htmlspecialchars($row['Name']); ?></td>
-                    <td><?= htmlspecialchars($row['City']); ?></td>
-                    <td><?= htmlspecialchars($row['Country']); ?></td>
-                    <td><?= htmlspecialchars($row['Date']); ?></td>
-                    <td><?= htmlspecialchars($row['Total']); ?></td>
+                    <td><?= htmlspecialchars($row['user_id']); ?></td>
+                    <td><?= htmlspecialchars($row['user_name']); ?></td>
+                    <td><?= htmlspecialchars($row['user_city']); ?></td>
+                    <td><?= htmlspecialchars($row['user_country']); ?></td>
                 </tr>
                 <?php endwhile; } catch (Exception $e) {
                     $logMessage = date('Y-m-d H:i:s') . ' - Erro: ' . $e->getMessage() . "\n";
-                    file_put_contents('error_log_resposta_4.txt', $logMessage, FILE_APPEND);
+                    file_put_contents('error_log_resposta_5.txt', $logMessage, FILE_APPEND);
                     echo "<p style=\"text-align: center;\">Ocorreu um erro. Por favor, tente novamente mais tarde.</p>";
                 } finally {
                     if ($stmt !== null) {

@@ -13,33 +13,11 @@
     <?php include("../include/header-paginas.php"); ?>
 
     <form method="post" class="container">
-        <button type="submit" name="submit">Executar Consulta</button>
+        <button type="button" id="loadData">Executar Consulta</button>
     </form>
 
-    <?php
-      ini_set('display_errors', '0');
-      if (isset($_POST['submit'])) {
-        /** @var mysqli $db_connection */
-        include('../conexao.php');
-
-        if (!($db_connection instanceof mysqli)) {
-          die("<p style=\"text-align: center;\">Erro de conexão: Não foi possível conectar ao banco de dados</p>");
-        }
-
-        try {
-          $stmt = $db_connection->prepare("SELECT YEAR(orders.order_date) AS Year, MONTH(orders.order_date) AS Month, SUM(orders.order_total) AS Total FROM user JOIN orders ON user.user_id = orders.order_user_id WHERE user.user_id IN (1, 3, 5) GROUP BY YEAR(orders.order_date), MONTH(orders.order_date) ORDER BY Year, Month");
-
-          if ($stmt === false) {
-            die("<p style=\"text-align: center;\">Ocorreu um erro. Por favor, tente novamente mais tarde.</p>");
-          }
-
-          $stmt->execute();
-
-          $result = $stmt->get_result();
-    ?>
-
     <main class="container">
-        <table>
+        <table id="dataTable">
             <thead>
                 <tr>
                     <th>Ano</th>
@@ -48,30 +26,29 @@
                 </tr>
             </thead>
             <tbody>
-                <?php while ($row = mysqli_fetch_assoc($result)): ?>
-                <tr>
-                    <td><?= htmlspecialchars($row['Year']); ?></td>
-                    <td><?= htmlspecialchars($row['Month']); ?></td>
-                    <td><?= htmlspecialchars($row['Total']); ?></td>
-                </tr>
-                <?php endwhile; } catch (Exception $e) {
-                    $logMessage = date('Y-m-d H:i:s') . ' - Erro: ' . $e->getMessage() . "\n";
-                    file_put_contents('error_log_resposta_6.txt', $logMessage, FILE_APPEND);
-                    echo "<p style=\"text-align: center;\">Ocorreu um erro. Por favor, tente novamente mais tarde.</p>";
-                } finally {
-                    if ($stmt !== null) {
-                        $stmt->close();
-                    }
-                    $db_connection->close();
-                } ?>
             </tbody>
         </table>
     </main>
 
-    <?php
-      }
-      include("../include/footer.php");
-    ?>
+    <script>
+    document.getElementById('loadData').addEventListener('click', () => {
+        fetch('resposta_6_load.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            body: 'loadData=true'
+        })
+        .then(response => response.text())
+        .then(data => {
+            document.querySelector('#dataTable tbody').innerHTML = data;
+        })
+        .catch(error => console.error(error));
+    });
+    </script>
+
+    <?php include("../include/footer.php"); ?>
 </body>
 
 </html>

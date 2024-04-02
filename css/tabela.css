@@ -1,0 +1,45 @@
+/* TABELA */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.2rem;
+}
+
+thead {
+  background-color: #234;
+  color: #fff;
+}
+
+th,
+td {
+  padding: 0.75rem;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tbody tr:hover {
+  background-color: #ddd;
+}
+
+/* ESTILOS PARA IMPRESSÃO */
+
+@media print {
+  thead {
+    color: #000;
+    background-color: #fff;
+  }
+
+  th,
+  td {
+    border: 1px solid #000;
+  }
+
+  tbody tr:nth-child(even) {
+    background-color: #ddd;
+  }
+}

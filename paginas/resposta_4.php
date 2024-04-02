@@ -30,7 +30,7 @@
           $stmt = $db_connection->prepare("SELECT user.user_name AS Name, user.user_city AS City, user.user_country AS Country, orders.order_date AS Date, orders.order_total AS Total FROM user JOIN orders ON user.user_id = orders.order_user_id WHERE user.user_id IN (1, 3, 5) ORDER BY user.user_name");
 
           if ($stmt === false) {
-            die("<p>Ocorreu um erro. Por favor, tente novamente mais tarde.</p>");
+            die("<p style=\"text-align: center;\">Ocorreu um erro. Por favor, tente novamente mais tarde.</p>");
           }
 
           $stmt->execute();
@@ -61,7 +61,7 @@
                 <?php endwhile; } catch (Exception $e) {
                     $logMessage = date('Y-m-d H:i:s') . ' - Erro: ' . $e->getMessage() . "\n";
                     file_put_contents('error_log_resposta_4.txt', $logMessage, FILE_APPEND);
-                    echo "<p>Ocorreu um erro. Por favor, tente novamente mais tarde.</p>";
+                    echo "<p style=\"text-align: center;\">Ocorreu um erro. Por favor, tente novamente mais tarde.</p>";
                 } finally {
                     if ($stmt !== null) {
                         $stmt->close();

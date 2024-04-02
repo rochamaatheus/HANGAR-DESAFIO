@@ -2,6 +2,8 @@
 
 ![Capa do Site](https://i.imgur.com/2T3bs0s.png)
 
+Nota: Para desenvolvimento do site e banco de dados utilizei o programa XAMPP.
+
 ## Descrição
 
 Este projeto foi desenvolvido para a Big Bang Theory Inc. com o objetivo de melhorar a visualização e gerenciamento de 

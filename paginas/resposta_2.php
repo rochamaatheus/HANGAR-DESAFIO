@@ -11,6 +11,18 @@
     #printButton {
         margin: 20px auto;
         padding: .5rem .75rem;
+        padding: .5rem 1rem;
+        font-size: 1rem;
+        color: #fff;
+        background-color: #234;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color .3s ease;
+    }
+
+    #printButton:hover {
+        background-color: #4b8;
     }
     </style>
 </head>

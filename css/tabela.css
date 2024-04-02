@@ -25,3 +25,21 @@ tbody tr:nth-child(even) {
 tbody tr:hover {
   background-color: #ddd;
 }
+
+/* ESTILOS PARA IMPRESSÃO */
+
+@media print {
+  thead {
+    color: #000;
+    background-color: #fff;
+  }
+
+  th,
+  td {
+    border: 1px solid #000;
+  }
+
+  tbody tr:nth-child(even) {
+    background-color: #ddd;
+  }
+}

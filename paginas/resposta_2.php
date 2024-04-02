@@ -48,12 +48,12 @@
                   /** @var mysqli $db_connection */
                   include('../conexao.php');
                   if (!($db_connection instanceof mysqli)) {
-                    die("<p>Erro de conexão: Não foi possível conectar ao banco de dados</p>");
+                    die("<p style=\"text-align: center;\">Erro de conexão: Não foi possível conectar ao banco de dados</p>");
                   }
                   try {
                     $stmt = $db_connection->prepare("SELECT * FROM orders");
                     if ($stmt === false) {
-                      die("<p>Ocorreu um erro. Por favor, tente novamente mais tarde.</p>");
+                      die("<p style=\"text-align: center;\">Ocorreu um erro. Por favor, tente novamente mais tarde.</p>");
                     }
                     $stmt->execute();
                     $result = $stmt->get_result();
@@ -69,7 +69,7 @@
                   endwhile; } catch (Exception $e) {
                     $logMessage = date('Y-m-d H:i:s') . ' - Erro: ' . $e->getMessage() . "\n";
                     file_put_contents('error_log_resposta_2.txt', $logMessage, FILE_APPEND);
-                    echo "<p>Ocorreu um erro. Por favor, tente novamente mais tarde.</p>";
+                    echo "<p style=\"text-align: center;\">Ocorreu um erro. Por favor, tente novamente mais tarde.</p>";
                   } finally {
                       if ($stmt !== null) {
                           $stmt->close();

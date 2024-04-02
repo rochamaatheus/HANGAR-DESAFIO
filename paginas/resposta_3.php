@@ -35,7 +35,7 @@
       include('../conexao.php');
 
       if (!($db_connection instanceof mysqli)) {
-        die("<p>Erro de conexão: Não foi possível conectar ao banco de dados</p>");
+        die("<p style=\"text-align: center;\">Erro de conexão: Não foi possível conectar ao banco de dados</p>");
       }
     ?>
 
@@ -48,7 +48,7 @@
               try {
                 $stmt = $db_connection->prepare("SELECT DISTINCT user_country FROM user ORDER BY user_country");
                 if ($stmt === false) {
-                  die("<p>Ocorreu um erro. Por favor, tente novamente mais tarde.</p>");
+                  die("<p style=\"text-align: center;\">Ocorreu um erro. Por favor, tente novamente mais tarde.</p>");
                 }
                 $stmt->execute();
                 $countries = $stmt->get_result();
@@ -56,7 +56,7 @@
                     echo "<option value=\"" . htmlspecialchars($row['user_country']) . "\">" . htmlspecialchars($row['user_country']) . "</option>";
                 }
               } catch (Exception $e) {
-                echo "<p>Ocorreu um erro. Por favor, tente novamente mais tarde.</p>";
+                echo "<p style=\"text-align: center;\">Ocorreu um erro. Por favor, tente novamente mais tarde.</p>";
               } finally {
                 $stmt->close();
               }

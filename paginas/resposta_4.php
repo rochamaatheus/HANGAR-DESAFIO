@@ -33,7 +33,7 @@
     </main>
 
     <script>
-        document.getElementById('loadData').addEventListener('click', function() {
+        document.getElementById('loadData').addEventListener('click', () => {
             fetch('resposta_4_load.php', {
                 method: 'POST',
                 headers: {

@@ -12,6 +12,7 @@ try {
     throw new Exception('Could not connect to MySQL server.');
   }
 } catch (Exception $e) {
-  echo $e->getMessage();
+    $logMessage = date('Y-m-d H:i:s') . ' - Erro: ' . $e->getMessage() . "\n";
+    file_put_contents('conexao.txt', $logMessage, FILE_APPEND);
 }
 ?>

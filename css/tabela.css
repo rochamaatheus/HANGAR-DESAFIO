@@ -1,9 +1,14 @@
 /* TABELA */
 
+.container {
+  overflow-x: auto;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 1.2rem;
+  overflow-x: auto;
 }
 
 thead {
@@ -29,6 +34,12 @@ tbody tr:hover {
 /* ESTILOS PARA IMPRESSÃO */
 
 @media print {
+  header,
+  footer,
+  button {
+    display: none;
+  }
+
   thead {
     color: #000;
     background-color: #fff;

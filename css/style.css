@@ -1,37 +1,38 @@
 body {
   margin: 0px;
-  font-family: "Avenir", Arial, Helvetica, sans-serif;
+  font-family: 'Avenir', Arial, Helvetica, sans-serif;
+  font-size: 1rem;
 }
+
 .container {
   max-width: 50rem;
   margin: 0 auto;
   padding: 1.2rem;
 }
+
 ul {
   list-style: none;
   padding: 0px;
   margin: 0px;
 }
+
 a {
   font-weight: bold;
   text-decoration: none;
   color: #234;
 }
+
 img {
   max-width: 100%;
   height: auto;
   display: block;
   border-radius: 4px;
 }
+
 .conteudo {
   display: grid;
-  grid-template-columns: minmax(200px, 1fr) minmax(150px, 400px);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1.875rem;
-}
-@media (max-width: 28.125rem) {
-  .conteudo {
-    display: block;
-  }
 }
 
 button {
@@ -61,7 +62,7 @@ button:hover {
   font-size: 1rem;
   margin-top: 0.75rem;
   margin-bottom: 2.5rem;
-  font-family: "Avenir", Arial, Helvetica, sans-serif;
+  font-family: 'Avenir', Arial, Helvetica, sans-serif;
   box-shadow: 0 4px 2px rgba(0, 0, 0, 0.1);
 }
 
@@ -73,10 +74,6 @@ header {
 
 header a {
   color: #fff;
-}
-
-a.router-link-active {
-  color: #4b8;
 }
 
 nav {
@@ -97,13 +94,31 @@ nav {
   max-width: 250px;
 }
 
-ul li {
-  display: inline-block;
+ul {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
 li a {
-  padding: 0 0.75rem;
-  margin-right: 0.75rem;
+  padding: 0.5rem 0.75rem;
+}
+
+@media (max-width: 700px) {
+  nav {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  nav ul {
+    margin-top: 1rem;
+  }
+  ul li {
+    margin-top: 0.75rem;
+  }
+  li a {
+    background-color: #1d2935;
+    border-radius: 4px;
+  }
 }
 
 /* FOOTER */
